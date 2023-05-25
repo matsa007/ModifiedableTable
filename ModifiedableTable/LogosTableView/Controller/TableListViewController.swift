@@ -73,6 +73,15 @@ extension TableListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setCellView(displayData: DisplayData(logoName: displayData.logoName, title: displayData.title, description: displayData.description))
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.logosTitlesDescriotionsTable.beginUpdates()
+            self.displayData.remove(at: indexPath.row)
+            self.logosTitlesDescriotionsTable.deleteRows(at: [indexPath], with: .fade)
+            self.logosTitlesDescriotionsTable.endUpdates()
+        }
+    }
 }
 
 extension TableListViewController {
