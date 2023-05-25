@@ -48,7 +48,7 @@ final class TableListViewController: UIViewController {
         self.logosTitlesDescriotionsTable.register(TableViewListCell.self, forCellReuseIdentifier: "tableViewCell")
         self.logosTitlesDescriotionsTable.dataSource = self
         self.logosTitlesDescriotionsTable.delegate = self
-        
+        self.logosTitlesDescriotionsTable.isEditing = true
     }
     
     // MARK: - DATA updating
@@ -81,6 +81,12 @@ extension TableListViewController: UITableViewDataSource, UITableViewDelegate {
             self.logosTitlesDescriotionsTable.deleteRows(at: [indexPath], with: .fade)
             self.logosTitlesDescriotionsTable.endUpdates()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.displayData[sourceIndexPath.row]
+        self.displayData.remove(at: sourceIndexPath.row)
+        self.displayData.insert(movedObject, at: destinationIndexPath.row)
     }
 }
 
