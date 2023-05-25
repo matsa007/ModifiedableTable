@@ -12,6 +12,8 @@ final class TableListViewController: UIViewController {
     
     // MARK: - Parameters
     
+    private let logosList: [String]
+    
     private var displayData: [DisplayData] = [] {
         didSet {
             self.logosTitlesDescriotionsTable.reloadData()
@@ -25,6 +27,17 @@ final class TableListViewController: UIViewController {
         table.backgroundColor = .red
         return table
     }()
+    
+    // MARK: - Initialisation
+    
+    init(logosList: LogosList) {
+        self.logosList = logosList.getLogosList()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
 
